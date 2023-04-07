@@ -5,4 +5,8 @@
 }
 <link rel="stylesheet" href="~/css/adminview.css" asp-append-version="true" />
 
+<partial name="_AdminNav" />
+
 <h1>Hej Administrator</h1>
+<p>För att göra en metod eller en hel sida stängd för icke-medlemmar så använder vi kommandot [Authorize].</p>
+<p>Detta kan läggas i Controller (mellan namespace och class) eller direkt ovanför valfri metod för att göra att denna kräver inlogg innan access.</p>
