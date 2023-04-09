@@ -24,10 +24,15 @@ namespace Budget_CoolBooks.Controllers
             return View();
         }
 
+        //BOOKS
+        [HttpGet]
+        public IActionResult AdminBooks()
+        {
+            return View();
+        }
 
 
-
-//REVIEWS 
+        //REVIEWS 
         [HttpGet]
         public IActionResult AdminReviews()
         {
