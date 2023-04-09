@@ -1,5 +1,6 @@
 ﻿using Budget_CoolBooks.Data;
 using Budget_CoolBooks.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Budget_CoolBooks.Services.Reviews
 {
@@ -13,14 +14,35 @@ namespace Budget_CoolBooks.Services.Reviews
         }
 
 
-        public async Task<List<Review>> GetReviewByUsername(string userName) 
+        public async Task<List<Review>> GetReviewByUsername(string userName)
         {
-            return _context.Reviews.
-                OrderBy(r => r.User.UserName).
-                Where(r => r.User.UserName == userName).
-                ToList();
+            // Include navigation-property. Sorts out all username that has IsDeleted=true. Sort by last created.
+                    return _context.Reviews
+                        .Include(r => r.User)
+                        .Where(r => r.User.UserName == userName && !r.IsDeleted)
+                        .OrderByDescending(r => r.Created) 
+                        .ToList();
+        }
+        public async Task<Review> GetReviewByID(int id)
+        {
+            return _context.Reviews
+                .Where(r => r.Id == id)
+                .FirstOrDefault();
+        }
+        public async Task<bool> DeleteReview(Review review)
+        {
+            review.IsDeleted = true;
+            var result =
+            _context.Reviews
+            .Update(review);
+            return Save();
         }
 
-        
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+
     }
 }

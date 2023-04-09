@@ -25,24 +25,40 @@ namespace Budget_CoolBooks.Controllers
         }
 
 
-        // Reviews-section
+
+
+//REVIEWS 
         [HttpGet]
         public IActionResult AdminReviews()
         {
             return View();
         }
 
-
         [HttpPost]
-        public async Task<IActionResult> ReviewsByName(string name)
+        public async Task<IActionResult> ReviewsByName(string userName)
         {
-            var result = await _reviewServices.GetReviewByUsername(name);
+ 
+            var result = await _reviewServices.GetReviewByUsername(userName);
             if (result == null)
             {
                 return NotFound();
             }
+            ViewBag.Reviews = result;
+            return View("AdminReviews", ViewBag.Reviews);
+        }
 
-            ViewBag.ListOfReviews = result;
+        [HttpPost]
+        public async Task<IActionResult> DeleteReview(int reviewId)
+        {
+            var reviewToDelete = await _reviewServices.GetReviewByID(reviewId);
+            if (reviewToDelete == null)
+            {
+                return NotFound();
+            }
+            if (! await _reviewServices.DeleteReview(reviewToDelete))
+            {
+                return NotFound();
+            }
             return View("AdminReviews");
         }
 
