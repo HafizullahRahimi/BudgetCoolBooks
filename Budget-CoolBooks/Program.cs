@@ -1,5 +1,6 @@
 using Budget_CoolBooks.Data;
 using Budget_CoolBooks.Models;
+using Budget_CoolBooks.Services.Reviews;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +16,8 @@ builder.Services.AddDefaultIdentity<User>()
     .AddRoles<IdentityRole>()
     .AddDefaultUI()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+builder.Services.AddScoped<ReviewServices>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

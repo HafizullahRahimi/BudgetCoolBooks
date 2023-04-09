@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h5>Search review by username</h5>
+<form method="post" asp-controller="Admin" asp-action="ReviewsByName">
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+  <span class="input-group-text">@@</span>
+  <input type="text" class="form-control" placeholder="Mail adress" aria-label="Server">
+</div>
+ <button type="submit" class="btn btn-primary">Sök</button>
+</form>
+
+@if (ViewBag.ListOfReviews != null)
+{
+    <p>Hej</p>
+}
