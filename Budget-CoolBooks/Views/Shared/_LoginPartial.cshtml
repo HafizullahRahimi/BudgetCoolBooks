@@ -3,24 +3,55 @@
 @inject UserManager<User> UserManager
 
 <ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
+    @if (SignInManager.IsSignedIn(User))
+    {
+      @*  <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>*@
+
+        <!-- User Menu-->
+        <div class="d-flex align-items-center">
+            <div class="flex-shrink-0 dropdown me-4">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="~/images/user.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                    @User.Identity?.Name
+                </a>
+                <ul class="dropdown-menu text-small">
+                    <li>
+                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Profile</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-success" asp-area="" asp-controller="Admin" asp-action="Index">Admin Panel</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li>
+                        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button type="submit" class="dropdown-item">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="ms-auto d-flex">
+            <!-- Register -->
+            <div class="text-end ">
+                <a class="btn btn-outline-primary me-2" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            </div>
+            <!-- Login -->
+            <div class="text-end ">
+                <a class="btn btn-outline-primary me-2 " asp-area="Identity" asp-page="/Account/Login">Login</a>
+            </div>
+        </div>
+    }
 </ul>
