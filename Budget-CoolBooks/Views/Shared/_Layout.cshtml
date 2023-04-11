@@ -41,10 +41,20 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - Budget_CoolBooks - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    &copy; 2023 - Budget_CoolBooks - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class=footer>
+        <div class="footercontent">
+            <h3>Something</h3>
+            <h3>Socials</h3>
+            <h3>Contact us</h3>
+            <p>Description...</p>
+            <div><a><img src="<%: Url.Content("~/Images/instagram.jpg") %></a></div>
+                <div>
+                    <p></p>
+                    <p>Adress: Regeringsgatan 74b Stockholm Sweden</p>
+                    <p>Email: BudgetCoolbooks@wecare.com</p>
+                    <p>Tele: 0501-965 42 23</p>
+                </div>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
