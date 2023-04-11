@@ -20,3 +20,17 @@ html {
 body {
   margin-bottom: 60px;
 }
+footer {
+    background-color: gray;
+    color: white;
+    padding: 50px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    cursor: default;
+}
+.footercontent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}
