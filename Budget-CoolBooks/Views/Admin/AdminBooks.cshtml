@@ -1,7 +1,9 @@
 ﻿@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Admin - Books";
 }
     <h5>Add new author</h5>
-<form>
+<form method="post" asp-controller="Admin" asp-action="CreateBook">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Title</label>
         <input type="text" class="form-control" name="title">
@@ -13,54 +15,36 @@
     </div>
 
     <div class="mb-3">
+        <label for="" class="form-label">ISBN</label>
+        <input type="text" class="form-control" name="isbn">
+    </div>
+
+    <div class="mb-3">
         <label for="" class="form-label">Image Path</label>
         <input type="text" class="form-control" name="imgpath">
     </div>
 
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Author name</label>  @* CLEAN SEARCH STRING*@
-        <input type="text" class="form-control" name="authorName">
+        <label for="exampleInputPassword1" class="form-label">Author firstname</label>  @* CLEAN SEARCH STRING*@
+        <input type="text" class="form-control" name="authorFirstName">
     </div>
 
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Genre</label> @*// DROP DOWN med alla genres.*@
-        <input type="text" class="form-control" name="imgpath">
+        <label for="exampleInputPassword1" class="form-label">Author lastname</label>  @* CLEAN SEARCH STRING*@
+        <input type="text" class="form-control" name="authorLastName">
     </div>
 
+    <div class="mb-3">
+        <select class="form-select" aria-label="Choose genre" name="genreSelect" id="genre-dropdown">
+            <option selected>Choose genre</option>
+            @foreach (var genre in (List<Genre>)ViewBag.genreList)
+            {
+                <option value="@genre.Id">@genre.Name</option>
+            }
+        </select>
+    </div>
 
     <button type="submit" class="btn btn-primary">Add book</button>
 </form>
 
 <br /> <hr /> <br />
-
-    <h5>Add new book</h5>
-    <p><em>Author must be added first if the books author don't already exists!</em></p>
-<form>
-    <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="title">
-    </div>
-
-    <div class="mb-3">
-        <label for="" class="form-label">Description</label>
-        <input type="text" class="form-control" name="description">
-    </div>
-
-    <div class="mb-3">
-        <label for="" class="form-label">Image Path</label>
-        <input type="text" class="form-control" name="imgpath">
-    </div>
-
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Author name</label>  @* CLEAN SEARCH STRING*@
-        <input type="text" class="form-control" name="authorName">
-    </div>
-
-    <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Genre</label> @*// DROP DOWN med alla genres.*@
-        <input type="text" class="form-control" name="imgpath">
-    </div>
-
-
-    <button type="submit" class="btn btn-primary">Add book</button>
-</form>

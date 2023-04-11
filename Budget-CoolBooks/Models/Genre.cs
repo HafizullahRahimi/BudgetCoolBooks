@@ -1,4 +1,6 @@
-﻿namespace Budget_CoolBooks.Models
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+
+namespace Budget_CoolBooks.Models
 {
     public class Genre
     {
@@ -9,5 +11,12 @@
 
         //Nested
         public Book Book { get; set; }
+
+        public Genre(string name, string description, DateTime created)
+        {
+            Name = name;
+            Description = description;
+            Created = created;
+        }
     }
 }

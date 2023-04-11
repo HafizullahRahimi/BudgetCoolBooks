@@ -14,8 +14,17 @@
         public ICollection<Review> Reviews { get; set; }
         public Author Author { get; set; }
         public User user { get; set; }
-        public int GenreId { get; set; }
         public Genre Genre { get; set; }
+        public int GenreId { get; set; }
 
+        public Book(string title, string description, int iSBN, string imagepath, bool isDeleted, DateTime created)
+        {
+            Title = title;
+            Description = description;
+            ISBN = iSBN;
+            Imagepath = imagepath;
+            IsDeleted = isDeleted;
+            Created = created;
+        }
     }
 }

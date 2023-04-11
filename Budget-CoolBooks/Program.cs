@@ -1,6 +1,10 @@
 using Budget_CoolBooks.Data;
 using Budget_CoolBooks.Models;
+using Budget_CoolBooks.Services.Authors;
+using Budget_CoolBooks.Services.Books;
+using Budget_CoolBooks.Services.Genres;
 using Budget_CoolBooks.Services.Reviews;
+using Budget_CoolBooks.Services.UserServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +21,11 @@ builder.Services.AddDefaultIdentity<User>()
     .AddDefaultUI()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+builder.Services.AddScoped<BookServices>();
+builder.Services.AddScoped<AuthorServices>();
 builder.Services.AddScoped<ReviewServices>();
+builder.Services.AddScoped<GenreServices>();
+builder.Services.AddScoped<UserServices>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 

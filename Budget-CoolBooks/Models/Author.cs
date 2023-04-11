@@ -9,5 +9,12 @@
 
         //Nested properties
         public ICollection<Book> Books { get; set; }
+
+        public Author(string firstname, string lastname, DateTime created)
+        {
+            Firstname = firstname;
+            Lastname = lastname;
+            Created = created;
+        }
     }
 }
