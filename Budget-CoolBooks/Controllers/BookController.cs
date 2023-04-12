@@ -32,6 +32,8 @@ namespace Budget_CoolBooks.Controllers
             {
                 return NotFound();
             }
+
+            // HÄRIFRÅN KAN DU FORTSÄTTA SOM DU VILL DAVID 
             ViewBag.bookID = result;
             return View("~/Home/Bookcard", ViewBag.bookID);
         }

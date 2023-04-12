@@ -59,8 +59,7 @@ namespace Budget_CoolBooks.Controllers
             int authorId;
 
             // Create book-object
-            int isbnToInt = Convert.ToInt32(isbn);
-            Book book = new Book(title, description, isbnToInt, imgpath, false, DateTime.Now);
+            Book book = new Book(title, description, isbn, imgpath, false, DateTime.Now);
 
             // See if author exists
             if (! await _authorServices.AuthorExists(authorFirstname, authorLastname))
@@ -176,9 +175,9 @@ namespace Budget_CoolBooks.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateGenre(string genreName, string genreDescription)
+        public async Task<IActionResult> CreateGenre(string genreName)
         {
-            Genre genre = new Genre(genreName, genreDescription, DateTime.Now);
+            Genre genre = new Genre(genreName, DateTime.Now);
             if (!ModelState.IsValid)
             {
                 return BadRequest();

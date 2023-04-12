@@ -7,7 +7,7 @@ namespace Budget_CoolBooks.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int ISBN { get; set; }
+        public string ISBN { get; set; }
         public string Imagepath { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime Created { get; set; }
@@ -19,7 +19,7 @@ namespace Budget_CoolBooks.Models
         public Genre Genre { get; set; }
         public int GenreId { get; set; }
 
-        public Book(string title, string description, int iSBN, string imagepath, bool isDeleted, DateTime created)
+        public Book(string title, string description, string iSBN, string imagepath, bool isDeleted, DateTime created)
         {
             Title = title;
             Description = description;
@@ -29,9 +29,6 @@ namespace Budget_CoolBooks.Models
             Created = created;
         }
 
-        public Book()
-        {
-
-        }
+        public Book() { }
     }
 }
