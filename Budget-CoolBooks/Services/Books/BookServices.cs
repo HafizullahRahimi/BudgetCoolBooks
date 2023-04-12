@@ -15,6 +15,11 @@ namespace Budget_CoolBooks.Services.Books
             _context = context;
         }
 
+        public async Task<ICollection<Book>> GetAllBooksSorted()
+        {
+            return _context.Books.OrderBy(b => b.Title).ToList();
+        }
+
         public async Task<bool> CreateBook(Book book, string userId, int authorId, int genreId)
         {
             var user = await _context.Users.FindAsync(userId); // This must be the admin who is responsible for creating book.

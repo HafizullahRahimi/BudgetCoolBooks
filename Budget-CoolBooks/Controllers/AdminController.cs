@@ -99,6 +99,19 @@ namespace Budget_CoolBooks.Controllers
             return RedirectToAction("AdminBooks");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ViewBooks()
+        {
+            var result = await _bookServices.GetAllBooksSorted();
+            if (result == null)
+            {
+                return NotFound();
+            }
+            ViewBag.bookListSorted = result;
+            return View(ViewBag.bookListSorted);
+
+        }
+
 
         //REVIEWS 
         [HttpGet]
