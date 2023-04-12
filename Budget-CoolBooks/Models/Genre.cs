@@ -10,7 +10,7 @@ namespace Budget_CoolBooks.Models
         public DateTime Created { get; set; }
 
         //Nested
-        public Book Book { get; set; }
+        public ICollection<Book> Books { get; set; }
 
         public Genre(string name, string description, DateTime created)
         {

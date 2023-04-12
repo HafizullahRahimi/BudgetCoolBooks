@@ -308,8 +308,7 @@ namespace Budget_CoolBooks.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Books_GenreId",
                 table: "Books",
-                column: "GenreId",
-                unique: true);
+                column: "GenreId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_userId",

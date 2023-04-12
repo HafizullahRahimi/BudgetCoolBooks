@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Budget_CoolBooks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230411181652_InitialCreate")]
+    [Migration("20230412051711_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -91,8 +91,7 @@ namespace Budget_CoolBooks.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.HasIndex("GenreId")
-                        .IsUnique();
+                    b.HasIndex("GenreId");
 
                     b.HasIndex("userId");
 
@@ -394,8 +393,8 @@ namespace Budget_CoolBooks.Migrations
                         .IsRequired();
 
                     b.HasOne("Budget_CoolBooks.Models.Genre", "Genre")
-                        .WithOne("Book")
-                        .HasForeignKey("Budget_CoolBooks.Models.Book", "GenreId")
+                        .WithMany("Books")
+                        .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -494,8 +493,7 @@ namespace Budget_CoolBooks.Migrations
 
             modelBuilder.Entity("Budget_CoolBooks.Models.Genre", b =>
                 {
-                    b.Navigation("Book")
-                        .IsRequired();
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Budget_CoolBooks.Models.User", b =>

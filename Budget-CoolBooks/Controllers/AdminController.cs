@@ -96,7 +96,7 @@ namespace Budget_CoolBooks.Controllers
             {
                 return BadRequest();
             }
-            return View("AdminBooks");
+            return RedirectToAction("AdminBooks");
         }
 
 
