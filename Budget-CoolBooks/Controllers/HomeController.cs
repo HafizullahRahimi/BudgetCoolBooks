@@ -28,9 +28,18 @@ namespace Budget_CoolBooks.Controllers
         {
             return View();
         }
-        public IActionResult Bookcard()
+
+        //public IActionResult Bookcard()
+        //{
+        //    return View();
+        //}
+
+        [HttpGet]
+        public async Task<IActionResult> Bookcard()
         {
-            return View();
+            var result = await _bookServices.GetAllBooksSorted();
+            ViewBag.BookList = result;
+            return View(ViewBag.BookList);
         }
 
         //[HttpPost]

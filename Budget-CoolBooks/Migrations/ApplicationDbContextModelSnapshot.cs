@@ -107,6 +107,10 @@ namespace Budget_CoolBooks.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -387,7 +391,7 @@ namespace Budget_CoolBooks.Migrations
                         .IsRequired();
 
                     b.HasOne("Budget_CoolBooks.Models.Genre", "Genre")
-                        .WithMany("Books")
+                        .WithMany()
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -483,11 +487,6 @@ namespace Budget_CoolBooks.Migrations
             modelBuilder.Entity("Budget_CoolBooks.Models.Book", b =>
                 {
                     b.Navigation("Reviews");
-                });
-
-            modelBuilder.Entity("Budget_CoolBooks.Models.Genre", b =>
-                {
-                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Budget_CoolBooks.Models.User", b =>
