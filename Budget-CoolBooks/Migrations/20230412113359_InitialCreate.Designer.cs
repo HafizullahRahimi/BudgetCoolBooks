@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Budget_CoolBooks.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230412051711_InitialCreate")]
+    [Migration("20230412113359_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -70,8 +70,9 @@ namespace Budget_CoolBooks.Migrations
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ISBN")
-                        .HasColumnType("int");
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Imagepath")
                         .IsRequired()
@@ -108,10 +109,6 @@ namespace Budget_CoolBooks.Migrations
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
