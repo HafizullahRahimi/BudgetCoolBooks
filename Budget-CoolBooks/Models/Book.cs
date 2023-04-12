@@ -1,4 +1,6 @@
-﻿namespace Budget_CoolBooks.Models
+﻿using System.CodeDom;
+
+namespace Budget_CoolBooks.Models
 {
     public class Book
     {
@@ -25,6 +27,11 @@
             Imagepath = imagepath;
             IsDeleted = isDeleted;
             Created = created;
+        }
+
+        public Book()
+        {
+
         }
     }
 }

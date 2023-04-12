@@ -99,7 +99,7 @@ namespace Budget_CoolBooks.Controllers
             return RedirectToAction("AdminBooks");
         }
 
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> ViewBooks()
         {
             var result = await _bookServices.GetAllBooksSorted();
@@ -108,9 +108,26 @@ namespace Budget_CoolBooks.Controllers
                 return NotFound();
             }
             ViewBag.bookListSorted = result;
-            return View(ViewBag.bookListSorted);
-
+            return View("AdminBooks", ViewBag.bookListSorted);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteBook(int id)
+        {
+            var result = await _bookServices.GetBookById(id);
+            if(result == null)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!await _bookServices.DeleteBook(result))
+            {
+                return NotFound();
+            }
+            return View("AdminBooks");
+        }
+        
+
 
 
         //REVIEWS 

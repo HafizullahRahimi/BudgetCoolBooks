@@ -3,7 +3,7 @@
     ViewData["Title"] = "Admin - Books";
 }       
 
-<h5>Add new author</h5>
+<h5>Add new book</h5>
 <form method="post" asp-controller="Admin" asp-action="CreateBook">
     <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Title</label>
@@ -26,12 +26,12 @@
     </div>
 
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Author firstname</label>  @* CLEAN SEARCH STRING*@
+        <label for="AuthorFirstName" class="form-label">Author firstname</label>  @* CLEAN SEARCH STRING*@
         <input type="text" class="form-control" name="authorFirstName">
     </div>
 
     <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Author lastname</label>  @* CLEAN SEARCH STRING*@
+        <label for="AuthorLastname" class="form-label">Author lastname</label>  @* CLEAN SEARCH STRING*@
         <input type="text" class="form-control" name="authorLastName">
     </div>
 
@@ -56,27 +56,23 @@
 <br /><hr /><br />
 
 <h5>Delete books</h5>
-<form method="Post" asp-controller="Admin" asp-action="GetBookToDelete">
-
-    <div class="mb-3">
-        <label for="bookTitle" class="form-label">Book title</label>
-        <input type="text" class="form-control" name="title">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Find book</button>
-</form>
-
+<br />
 <h6>Show books alphabetically</h6>
-<form method="Get" asp-controller="Admin" asp-action="ViewBooks">
+<form method="Post" asp-controller="Admin" asp-action="ViewBooks">
     <button type="submit" class="btn btn-primary">Get all books</button>
 </form>
-
+<br />
 @if (ViewBag.bookListSorted != null)
 {
-    <ul>
+    <ul class="list-group">
         @foreach (var book in (List<Book>)ViewBag.bookListSorted)
         {
-            <li>@book.Title</li>
+             <li class="list-group-item">@book.Title</li>
+            <form method="Post" asp-controller="Admin" asp-action="DeleteBook">
+                <input type="hidden" value="@book.Id" name="id">
+                <em><button type="submit" class="btn btn-primary btn sm">Delete</button></em>
+            </form>
+            <hr />
         }
     </ul>
 }

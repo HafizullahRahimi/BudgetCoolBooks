@@ -14,10 +14,14 @@ namespace Budget_CoolBooks.Services.Books
         {
             _context = context;
         }
+        public async Task<Book> GetBookById(int bookId)
+        {
+            return _context.Books.Where(b => b.Id == bookId && !b.IsDeleted).FirstOrDefault();
+        }
 
         public async Task<ICollection<Book>> GetAllBooksSorted()
         {
-            return _context.Books.OrderBy(b => b.Title).ToList();
+            return _context.Books.Where(b => !b.IsDeleted).OrderBy(b => b.Title).ToList();
         }
 
         public async Task<bool> CreateBook(Book book, string userId, int authorId, int genreId)
@@ -43,6 +47,13 @@ namespace Budget_CoolBooks.Services.Books
             book.Genre = genre;
 
             _context.Books.Add(book);
+            return Save();
+        }
+
+        public async Task<bool> DeleteBook(Book book)
+        {
+            book.IsDeleted = true;
+            var result = _context.Books.Update(book);
             return Save();
         }
 
