@@ -2,13 +2,48 @@
     ViewData["Title"] = "Bookcard";
 }
 <link rel="stylesheet" href="~/css/bookcard.css" asp-append-version="true" />
+
+<!-- Book -->
+@if (ViewBag.bookListSorted != null)
+{
+    @foreach (var book in (List<Book>)ViewBag.bookListSorted)
+    {
+       @* @if (book.Id == ?)*@
+        {
+            break;
+        }
+    }
+}
+<!-- Author -->
+@if (ViewBag.bookListSorted != null)
+{
+    @foreach (var book in (List<Book>)ViewBag.bookListSorted)
+    {
+       @* @if (book.Id == ?)*@
+        {
+            break;
+        }
+    }
+}
+<!-- Genre -->
+@if (ViewBag.bookListSorted != null)
+{
+    @foreach (var book in (List<Book>)ViewBag.bookListSorted)
+    {
+       @* @if (book.Id == ?)*@
+        {
+            break;
+        }
+    }
+}
+
 <div class="card">
-    <h1>"Title"</h1>
+   @* <h1>@{ @book.Title}</h1>*@
     <div class="infobox">
         <h2>Author:</h2>
-        <h4>"Example.""</h4>
+        @* <h4>@{ @Author.Firstname @Author.Lastname}</h4>*@
         <h2>Description:</h2>
-        <h4>"Example.""</h4>
+        @* <h4>@{ @book.Description}</h4>*@
     </div>
     <img src="/images/admin.png" alt="error" style="width: 15%; margin-right: auto; margin-left: auto;">
     <div class="infobox">

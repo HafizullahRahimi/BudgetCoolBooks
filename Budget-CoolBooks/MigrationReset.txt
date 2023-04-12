@@ -8,6 +8,3 @@ add-migration InitialCreate
 update-database
 
 Kör ny seed-query i SQL
-
-
-

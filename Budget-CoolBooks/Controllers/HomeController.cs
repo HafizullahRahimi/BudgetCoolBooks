@@ -1,4 +1,5 @@
 ﻿using Budget_CoolBooks.Models;
+using Budget_CoolBooks.Services.Books;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -27,6 +28,19 @@ namespace Budget_CoolBooks.Controllers
         {
             return View();
         }
+
+        //[HttpPost]
+        //public async Task<IActionResult> ViewBooks()
+        //{
+        //    var result = await _bookServices.GetAllBooksSorted();
+        //    if (result == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewBag.bookListSorted = result;
+        //    return View(ViewBag.bookListSorted);
+        //}
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
