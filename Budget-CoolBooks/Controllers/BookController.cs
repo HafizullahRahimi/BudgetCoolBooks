@@ -23,5 +23,18 @@ namespace Budget_CoolBooks.Controllers
             ViewBag.bookListSorted = result;
             return View(ViewBag.bookListSorted);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> BookDetails(int id)
+        {
+            var result = await _bookServices.GetBookById(id);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            ViewBag.bookID = result;
+            return View("~/Home/Bookcard", ViewBag.bookID);
+        }
+        
     }
 }
