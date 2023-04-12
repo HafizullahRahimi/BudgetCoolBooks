@@ -164,30 +164,5 @@ namespace Budget_CoolBooks.Controllers
             return View("AdminReviews");
         }
 
-
-        //GENRE 
-
-
-        [HttpGet]
-        public IActionResult AdminGenres()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> CreateGenre(string genreName)
-        {
-            Genre genre = new Genre(genreName, DateTime.Now);
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-
-            if (! await _genreServices.CreateGenre(genre))
-            {
-                return BadRequest();
-            }
-            return View("AdminGenres");
-        }
     }
 }
