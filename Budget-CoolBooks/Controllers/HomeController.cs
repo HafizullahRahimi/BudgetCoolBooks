@@ -1,4 +1,5 @@
 ﻿using Budget_CoolBooks.Models;
+using Budget_CoolBooks.Services.Books;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -8,15 +9,19 @@ namespace Budget_CoolBooks.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly BookServices _bookServices;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, BookServices bookServices)
         {
             _logger = logger;
+            _bookServices = bookServices;
         }
-
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var result = await _bookServices.GetAllBooksSorted();
+            ViewBag.BookList = result;
+            return View(ViewBag.BookList);
         }
 
         public IActionResult ContactUs()
