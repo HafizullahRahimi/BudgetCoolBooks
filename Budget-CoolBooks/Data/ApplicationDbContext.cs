@@ -15,5 +15,6 @@ namespace Budget_CoolBooks.Data
         public DbSet<Book> Books { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Car> Cars { get; set; }
     }
 }
