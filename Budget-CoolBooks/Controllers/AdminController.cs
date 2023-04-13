@@ -127,8 +127,6 @@ namespace Budget_CoolBooks.Controllers
         }
         
 
-
-
         //REVIEWS 
         [HttpGet]
         public IActionResult AdminReviews()
@@ -163,6 +161,33 @@ namespace Budget_CoolBooks.Controllers
             }
             return View("AdminReviews");
         }
+
+
+//________USER-RELATED__________________________________________________
+
+        [HttpGet]
+        public async Task<IActionResult> AdminUsers()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PromoteUser(string userName)
+        {
+            var user = await _userServices.GetUserByName(userName);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            if (!await _userServices.PromoteToAdmin(user))
+            {
+                ViewBag.AdminAlready = "User is already administrator.";
+                return View("AdminUsers", ViewBag.AdminAlready);
+            }
+            ViewBag.AdminConfirm = userName + " is now added as administrator.";
+            return View("AdminUsers", ViewBag.AdminConfirm);
+        }
+
 
     }
 }
